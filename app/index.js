@@ -164,16 +164,16 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     jshint: function () {
-      this.copy('jshintrc', '.jshintrc');
+      this.copy('_jshintrc', '.jshintrc');
     },
 
     editorConfig: function () {
-      this.copy('editorconfig', '.editorconfig');
+      this.copy('_editorconfig', '.editorconfig');
     },
 
     h5bp: function () {
-      this.copy('favicon.ico', 'app/favicon.ico');
-      this.copy('robots.txt', 'app/robots.txt');
+      this.copy('_favicon.ico', 'app/favicon.ico');
+      this.copy('_robots.txt', 'app/robots.txt');
     },
 
     mainStylesheet: function () {
@@ -192,32 +192,6 @@ module.exports = yeoman.generators.Base.extend({
     writeIndex: function () {
       this.indexFile = this.src.read('index.html');
       this.indexFile = this.engine(this.indexFile, this);
-
-      // wire Bootstrap plugins
-      if (this.includeBootstrap) {
-        var bs = 'bower_components/';
-
-        if (this.includeSass) {
-          bs += 'bootstrap-sass-official/assets/javascripts/bootstrap/';
-        } else {
-          bs += 'bootstrap/js/';
-        }
-
-        this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-          bs + 'affix.js',
-          bs + 'alert.js',
-          bs + 'dropdown.js',
-          bs + 'tooltip.js',
-          bs + 'modal.js',
-          bs + 'transition.js',
-          bs + 'button.js',
-          bs + 'popover.js',
-          bs + 'carousel.js',
-          bs + 'scrollspy.js',
-          bs + 'collapse.js',
-          bs + 'tab.js'
-        ]);
-      }
 
       this.indexFile = this.appendFiles({
         html: this.indexFile,

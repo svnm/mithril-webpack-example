@@ -40,8 +40,12 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     if (!this.options['skip-welcome-message']) {
-      this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, jQuery, and a gulpfile.js to build your app.'));
+      // Have Yeoman greet the user.
+      this.log(yosay('Welcome to the marvelous Mithril generator!'));
+      this.log(yosay('\'Allo \'allo! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery, and a gulpfile.js to build your app.'));
     }
+
+    /* this should be obsolete as we will just give them bootstrap, either SASS, LESS or CSS version */
 
     var prompts = [{
       type: 'checkbox',
@@ -50,6 +54,10 @@ module.exports = yeoman.generators.Base.extend({
       choices: [{
         name: 'Sass',
         value: 'includeSass',
+        checked: true
+      }, {
+        name: 'Bootstrap',
+        value: 'includeBootstrap',
         checked: true
       }, {
         name: 'Bootstrap',
@@ -80,38 +88,35 @@ module.exports = yeoman.generators.Base.extend({
   },
 
 
-  askForCSSFramework: function () {
+  cssFramework: function () {
     var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log(yosay('Welcome to the marvelous Mithril generator!'));
 
     var prompts = [{
       type: 'list',
       name: 'cssFramework',
-      message: 'What CSS framework would you like to include?',
+      message: 'Which CSS framework would you like to use?',
       choices: [{
-        name: 'SASS Bootstrap',
-        value: 'SASSBootstrap'
+        name: 'LESS',
+        value: 'less'
       }, {
-        name: 'SASS Compass framework',
-        value: 'CompassFramework'
+        name: 'SASS',
+        value: 'sass'
       }]
     }];
 
     this.prompt(prompts, function (props) {
       this.cssFramework = props.cssFramework;
-
       done();
     }.bind(this));
   },
-  askForModuleLoader: function() {
+  
+  moduleLoader: function() {
     var cb = this.async();
 
     var prompts = [{
       type: 'list',
       name: 'moduleLoader',
-      message: 'What module loader would you like to include?',
+      message: 'Which module loader would you like to include?',
       choices: [{
         name: 'Browserify',
         value: 'browserify'

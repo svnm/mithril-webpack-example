@@ -1,5 +1,5 @@
 Description:
-    Creates a new basic front-end web application.
+    Creates a new basic front-end web application using the Mithril client-side MVC framework.
 
 Options:
     Sass: Include Sass
@@ -7,7 +7,7 @@ Options:
     Modernizr: Include Modernizr
 
 Example:
-    yo gulp-webapp
+    yo gulp-mithril
 
     This will create:
         gulpfile.js: Configuration for the task runner.

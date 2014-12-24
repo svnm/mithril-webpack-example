@@ -60,10 +60,6 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeBootstrap',
         checked: true
       }, {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: true
-      }, {
         name: 'Modernizr',
         value: 'includeModernizr',
         checked: true
@@ -76,12 +72,6 @@ module.exports = yeoman.generators.Base.extend({
       var hasFeature = function (feat) {
         return features.indexOf(feat) !== -1;
       };
-
-      // manually deal with the response, get back and store the results.
-      // we change a bit this way of doing to automatically do this in the self.prompt() method.
-      this.includeSass = hasFeature('includeSass');
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeModernizr = hasFeature('includeModernizr');
 
       done();
     }.bind(this));
@@ -134,7 +124,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     gulpfile: function() {
-      this.template('gulpfile.js');
+      this.template('_gulpfile.js');
     },
 
     packageJSON: function() {
@@ -143,7 +133,6 @@ module.exports = yeoman.generators.Base.extend({
 
     git: function() {
       this.copy('gitignore', '.gitignore');
-      this.copy('gitattributes', '.gitattributes');
     },
 
     bower: function() {
@@ -221,7 +210,7 @@ module.exports = yeoman.generators.Base.extend({
     });
 
     this.on('end', function () {
-      var bowerJson = this.dest.readJSON('bower.json');
+      var bowerJson = this.dest.readJSON('_bower.json');
 
       // wire Bower packages to .html
       wiredep({
@@ -232,7 +221,7 @@ module.exports = yeoman.generators.Base.extend({
         src: 'app/index.html'
       });
 
-      if (this.includeSass) {
+      if (this.cssFramework === 'SASS') {
         // wire Bower packages to .scss
         wiredep({
           bowerJson: bowerJson,

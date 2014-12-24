@@ -1,15 +1,19 @@
 {
-  "name": "gulp-mitrhil-app",
+  "name": "<%= _.slugify(appname) %>",
   "private":true,
   "version": "0.0.1",
-  "main": "path/to/main.css",
   "ignore": [
     ".jshintrc",
     "**/*.txt"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.1",
     "jquery": "~2.1.1",
-    "modernizr": "~2.8.1"
+    "modernizr": "~2.8.1",
+    <% if (moduleLoader === 'requirejs') { %>
+    "requirejs": "*",<% } %>
+    {<% if (cssFramework === 'SASS') { %>   
+    "sass-bootstrap": "*" <% } %>
+    {<% if (cssFramework === 'LESS') { %>   
+    "less-bootstrap": "*" <% } %>
   }
 }

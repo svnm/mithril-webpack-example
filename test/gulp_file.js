@@ -43,14 +43,6 @@ describe('Gulp Webapp generator: tasks', function () {
     });
   };
 
-  it('should contain styles task without Sass included', function (done) {
-    assertTaskExists(this.webapp, 'styles', [], done);
-  });
-
-  it('should contain styles task with Sass included', function (done) {
-    assertTaskExists(this.webapp, 'styles', ['includeSass'], done);
-  });
-
   it('should contain jshint task', function (done) {
     assertTaskExists(this.webapp, 'jshint', [], done);
   });

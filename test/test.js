@@ -39,10 +39,6 @@ describe('Gulp webapp generator test', function () {
       'app/scripts/main.js'
     ];
 
-    helpers.mockPrompt(this.webapp, {
-      features: ['includeSass']
-    });
-
     this.webapp.run({}, function () {
       helpers.assertFile(expected);
       done();

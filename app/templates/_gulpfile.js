@@ -1,10 +1,6 @@
-/* jshint node:true */
-/* global -$ */
 'use strict';
-// generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-
+var plugin = require('gulp-load-plugins')();
 
 gulp.task('less', function () {
 
@@ -19,16 +15,19 @@ var path = require('path');
 });
 
 
-gulp.task('styles', function () {<% if (includeSass) { %>
+gulp.task('styles', function () { 
+  <%  if (this.cssFramework === 'SASS') { %>
   return gulp.src('app/styles/main.scss')
-    .pipe($.rubySass({
+    .pipe(plugin.rubySass({
       style: 'expanded',
       precision: 10,
       loadPath: ['.']
     }))
-    .on('error', function (err) { console.log(err.message); })<% } else { %>
-  return gulp.src('app/styles/main.css')<% } %>
-    .pipe($.postcss([
+    .on('error', function (err) { console.log(err.message); })
+    <% } else { %>
+  return gulp.src('app/styles/main.css')
+  <% } %>
+    .pipe(plugin.postcss([
       require('autoprefixer-core')({browsers: ['last 1 version']})
     ]))
     .pipe(gulp.dest('.tmp/styles'));
@@ -36,27 +35,27 @@ gulp.task('styles', function () {<% if (includeSass) { %>
 
 gulp.task('jshint', function () {
   return gulp.src('app/scripts/**/*.js')
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.jshint.reporter('fail'));
+    .pipe(plugin.jshint())
+    .pipe(plugin.jshint.reporter('jshint-stylish'))
+    .pipe(plugin.jshint.reporter('fail'));
 });
 
 gulp.task('html', ['styles'], function () {
-  var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
+  var assets = plugin.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
   return gulp.src('app/*.html')
     .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
+    .pipe(plugin.if('*.js', plugin.uglify()))
+    .pipe(plugin.if('*.css', plugin.csso()))
     .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(plugin.useref())
+    .pipe(plugin.if('*.html', plugin.minifyHtml({conditionals: true, loose: true})))
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe(plugin.cache(plugin.imagemin({
       progressive: true,
       interlaced: true
     })))
@@ -65,8 +64,8 @@ gulp.task('images', function () {
 
 gulp.task('fonts', function () {
   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-    .pipe($.flatten())
+    .pipe(plugin.filter('**/*.{eot,svg,ttf,woff}'))
+    .pipe(plugin.flatten())
     .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
@@ -108,43 +107,54 @@ gulp.task('serve', ['connect', 'watch'], function () {
 // inject bower components
 gulp.task('wiredep', function () {
   var wiredep = require('wiredep').stream;
-<% if (includeSass) { %>
+<% if (this.cssFramework === 'SASS') { %>
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
     .pipe(gulp.dest('app/styles'));
+<% } %>
 
+<% if (this.cssFramework === 'SASS') { %>
   gulp.src('app/styles/*.less')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
     .pipe(gulp.dest('app/styles'));
-
 <% } %>
+
   gulp.src('app/*.html')
-    .pipe(wiredep({<% if (includeSass && includeBootstrap) { %>
-      exclude: ['bootstrap-sass-official'],<% } %>
+    .pipe(wiredep({
+      <% if (this.cssFramework === 'SASS') { %>
+      exclude: ['bootstrap-sass-official'],
+      <% } %>
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
 });
 
 gulp.task('watch', ['connect'], function () {
-  $.livereload.listen();
+  plugin.livereload.listen();
   gulp.watch([
     'app/*.html',
     '.tmp/styles/**/*.css',
     'app/scripts/**/*.js',
     'app/images/**/*'
-  ]).on('change', $.livereload.changed);
+  ]).on('change', plugin.livereload.changed);
 
-  gulp.watch('app/styles/**/*.<%= includeSass ? 'less' : 'css' %>', ['styles']);
+  <% if (this.cssFramework === 'SASS') { %>
+  gulp.watch('app/styles/**/*.scss', ['styles']);
+  <% } %>
+
+  <% if (this.cssFramework === 'LESS') { %>
+  gulp.watch('app/styles/**/*.less', ['styles']);
+  <% } %>
+
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
 gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe(plugin.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], function () {

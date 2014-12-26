@@ -1,19 +1,12 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "this-app",
   "private":true,
   "version": "0.0.1",
-  "ignore": [
-    ".jshintrc",
-    "**/*.txt"
-  ],
   "dependencies": {
     "jquery": "~2.1.1",
-    "modernizr": "~2.8.1",
-    <% if (moduleLoader === 'requirejs') { %>
-    "requirejs": "*",<% } %>
-    {<% if (cssFramework === 'SASS') { %>   
-    "sass-bootstrap": "*" <% } %>
-    {<% if (cssFramework === 'LESS') { %>   
-    "less-bootstrap": "*" <% } %>
+    "modernizr": "~2.8.1", <% if (moduleLoader === 'requirejs') { %>
+    "requirejs": "*",<% } %> <% if (cssFramework === 'SASS') { %>   
+    "sass-bootstrap": "*" <% } %> <% if (cssFramework === 'LESS') { %>   
+    "bootstrap": "*" <% } %>
   }
 }

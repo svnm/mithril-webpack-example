@@ -34,49 +34,11 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     this.pkg = require('../package.json');
-  },
-
-  prompting: function () {
-    var done = this.async();
 
     if (!this.options['skip-welcome-message']) {
-      // Have Yeoman greet the user.
-      this.log(yosay('Welcome to the marvelous Mithril generator!'));
-      this.log(yosay('\'Allo \'allo! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery, and a gulpfile.js to build your app.'));
+      this.log(yosay('Welcome to the marvelous Mithril generator! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery, and a gulpfile.js to build your app.'));
     }
-
-    /* this should be obsolete as we will just give them bootstrap, either SASS, LESS or CSS version */
-
-    var prompts = [{
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: [{
-        name: 'Sass',
-        value: 'includeSass',
-        checked: true
-      }, {
-        name: 'Bootstrap',
-        value: 'includeBootstrap',
-        checked: true
-      }, {
-        name: 'Modernizr',
-        value: 'includeModernizr',
-        checked: true
-      }]
-    }];
-
-    this.prompt(prompts, function (answers) {
-      var features = answers.features;
-
-      var hasFeature = function (feat) {
-        return features.indexOf(feat) !== -1;
-      };
-
-      done();
-    }.bind(this));
   },
-
 
   cssFramework: function () {
     var done = this.async();
@@ -87,10 +49,10 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Which CSS framework would you like to use?',
       choices: [{
         name: 'LESS',
-        value: 'less'
+        value: 'LESS'
       }, {
         name: 'SASS',
-        value: 'sass'
+        value: 'SASS'
       }]
     }];
 
@@ -124,7 +86,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     gulpfile: function() {
-      this.template('_gulpfile.js');
+      this.template('_gulpfile.js', 'gulpfile.js');
     },
 
     packageJSON: function() {
@@ -137,7 +99,7 @@ module.exports = yeoman.generators.Base.extend({
 
     bower: function() {
       this.copy('_bowerrc', '.bowerrc');
-      this.copy('_bower.json', '.bower.json');
+      this.copy('_bower.json', 'bower.json');
     },
 
     jshint: function () {
@@ -156,18 +118,18 @@ module.exports = yeoman.generators.Base.extend({
     mainStylesheet: function () {
       var css = 'main';
 
-      if (this.includeSass) {
+      if (this.cssFramework === 'SASS') {
         css += '.scss';
-      } else {
-        css += '.css';
+      }
+      if (this.cssFramework === 'LESS') {
+        css += '.less';
       }
 
-      this.copy(css, 'app/styles/' + css);
-      this.copy(css, 'app/styles/main.less');
+      this.copy('_' + css, 'app/styles/' + css);
     },
 
     writeIndex: function () {
-      this.indexFile = this.src.read('index.html');
+      this.indexFile = this.src.read('_index.html');
       this.indexFile = this.engine(this.indexFile, this);
 
       this.indexFile = this.appendFiles({
@@ -186,7 +148,7 @@ module.exports = yeoman.generators.Base.extend({
       this.mkdir('app/styles');
       this.mkdir('app/images');
       this.mkdir('app/fonts');
-      this.copy('main.js', 'app/scripts/main.js');
+      this.copy('_main.js', 'app/scripts/main.js');
     }
   },
 
@@ -194,8 +156,7 @@ module.exports = yeoman.generators.Base.extend({
     var howToInstall =
       '\nAfter running ' +
       chalk.yellow.bold('npm install & bower install') +
-      ', inject your' +
-      '\nfront end dependencies by running ' +
+      ', inject your' + '\nfront end dependencies by running ' +
       chalk.yellow.bold('gulp wiredep') +
       '.';
 
@@ -210,9 +171,9 @@ module.exports = yeoman.generators.Base.extend({
     });
 
     this.on('end', function () {
-      var bowerJson = this.dest.readJSON('_bower.json');
 
-      // wire Bower packages to .html
+      var bowerJson = this.dest.readJSON('bower.json');
+      // read Bower packages from bower.json and wire them to .html and .scss / .less
       wiredep({
         bowerJson: bowerJson,
         directory: 'bower_components',
@@ -222,7 +183,6 @@ module.exports = yeoman.generators.Base.extend({
       });
 
       if (this.cssFramework === 'SASS') {
-        // wire Bower packages to .scss
         wiredep({
           bowerJson: bowerJson,
           directory: 'bower_components',
@@ -231,9 +191,16 @@ module.exports = yeoman.generators.Base.extend({
         });
       }
 
-      // ideally we should use composeWith, but we're invoking it here
-      // because generator-mocha is changing the working directory
-      // https://github.com/yeoman/generator-mocha/issues/28
+      if (this.cssFramework === 'LESS') {
+        wiredep({
+          bowerJson: bowerJson,
+          directory: 'bower_components',
+          ignorePath: /^(\.\.\/)+/,
+          src: 'app/styles/*.less'
+        });
+      }
+
+
       this.invoke(this.options['test-framework'], {
         options: {
           'skip-message': this.options['skip-install-message'],

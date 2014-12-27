@@ -4,9 +4,8 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery": "~2.1.1",
-    "modernizr": "~2.8.1", <% if (moduleLoader === 'requirejs') { %>
-    "requirejs": "*",<% } %> <% if (cssFramework === 'SASS') { %>   
-    "sass-bootstrap": "*" <% } %> <% if (cssFramework === 'LESS') { %>   
+    "modernizr": "~2.8.1", <% if (cssFramework === 'SASS') { %>   
+    "bootstrap-sass-official": "~3.3.1" <% } %> <% if (cssFramework === 'LESS') { %>   
     "bootstrap": "*" <% } %>
   }
 }

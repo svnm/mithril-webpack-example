@@ -7,17 +7,9 @@
     <title><%= appname %></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    <!-- build:js scripts/vendor/modernizr.js -->
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -45,12 +37,12 @@
           <h4>HTML5 Boilerplate</h4>
           <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
 
-          <% if (this.cssFramework === 'SASS') { %>
+          <% if (cssFramework === 'SASS') { %>
             <h4>Sass</h4>
             <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
           <% } %>
 
-          <% if (this.cssFramework === 'LESS') { %>
+          <% if (cssFramework === 'LESS') { %>
             <h4>LESS</h4>
             <p>Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.</p>
           <% } %>
@@ -77,9 +69,5 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
   </body>
 </html>

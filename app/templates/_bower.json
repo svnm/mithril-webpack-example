@@ -7,6 +7,7 @@
     "modernizr": "~2.8.1", <% if (cssFramework === 'SASS') { %>
     "bootstrap-sass-official": "~3.3.1", <% } if (cssFramework === 'LESS') { %>
     "bootstrap": "*", <% } if (moduleLoader === 'requirejs') { %>
-    "requirejs": "*" <% } %>
+    "requirejs": "*", <% } %>
+    "almond": "*"
   }
 }

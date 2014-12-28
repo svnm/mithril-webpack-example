@@ -2,6 +2,38 @@
 var gulp = require('gulp');
 var plugin = require('gulp-load-plugins')();
 
+var browserify = require('browserify'),
+    watchify = require('watchify'),
+    source = require('vinyl-source-stream'),
+    sourceFile = './app/scripts/main.js',
+    destFolder = './app/scripts/browserify/',
+    destFile = 'main.js';
+
+/* browserify */ 
+gulp.task('browserify', function() {
+
+  var bundler = browserify({
+    entries: sourceFile,
+    cache: {}, packageCache: {}, fullPaths: true, debug: true
+  });
+
+  var bundle = function() {
+    return bundler
+      .bundle()
+      .on('error', function () {})
+      .pipe(source(destFile))
+      .pipe(gulp.dest(destFolder));
+  };
+
+  if(global.isWatching) {
+    bundler = watchify(bundler);
+    bundler.on('update', bundle);
+  }
+
+  return bundle();
+});
+
+
 /* styles */
 gulp.task('styles', function () { 
   <%  if (cssFramework === 'SASS') { %>
@@ -108,26 +140,12 @@ gulp.task('connect', ['styles'], function () {
 
 /* serve */
 gulp.task('serve', ['connect', 'watch'], function () {
+  gulp.start('browserify');
+
+  <% if (moduleLoader === 'browserify') { %>
+    gulp.start('browserify'); <% } %>
+
   require('opn')('http://localhost:9000');
-});
-
-/* wiredep */ 
-gulp.task('wiredep', function () {
-  /*
-  var wiredep = require('wiredep').stream;
-  gulp.src('app/styles/*.scss')
-    .pipe(wiredep())
-    .pipe(gulp.dest('app/styles'));
-
-  gulp.src('app/styles/*.less')
-    .pipe(wiredep())
-    .pipe(gulp.dest('app/styles'));
-
-  gulp.src('app/*.html')
-    .pipe(wiredep({exclude: ['bootstrap-sass-official']}))
-    .pipe(wiredep({exclude: ['bootstrap']}))
-    .pipe(gulp.dest('app'));
-  */
 });
 
 /* watch */
@@ -142,14 +160,14 @@ gulp.task('watch', ['connect'], function () {
   ]).on('change', plugin.livereload.changed);
 
   <% if (cssFramework === 'SASS') { %>
-    gulp.watch('app/styles/**/*.scss', ['styles']);
-  <% } %>
+    gulp.watch('app/styles/**/*.scss', ['styles']); <% } %>
 
   <% if (cssFramework === 'LESS') { %>
-    gulp.watch('app/styles/**/*.less', ['styles']);
-  <% } %>
+    gulp.watch('app/styles/**/*.less', ['styles']); <% } %>
 
-  gulp.watch('bower.json', ['wiredep']);
+  <% if (moduleLoader === 'browserify') { %>
+      gulp.watch('app/scripts/**/*.js', ['browserify']); <% } %>
+
 });
 
 /* build */

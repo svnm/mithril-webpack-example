@@ -37,6 +37,10 @@
           <h4>HTML5 Boilerplate</h4>
           <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
 
+          <h4>Gulp</h4>
+          <p>Speed. Efficiency. Simplicity. Gulp's use of streams and code-over-configuration makes for a simpler and more intuitive build.</p>
+
+
           <% if (cssFramework === 'SASS') { %>
             <h4>Sass</h4>
             <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
@@ -47,6 +51,17 @@
             <p>Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.</p>
           <% } %>
 
+
+          <% if (moduleLoader === 'requirejs') { %>
+            <h4>RequireJs</h4>
+            <p>RequireJS is a JavaScript file and module loader. Using a modular script loader like RequireJS will improve the speed and quality of your code.</p>
+          <% } %>
+
+          <% if (moduleLoader === 'browserify') { %>
+            <h4>Browserify</h4>
+            <p>Browserify lets you require('modules') in the browser by bundling up all of your dependencies.</p>
+          <% } %>
+
           <h4>Bootstrap</h4>
           <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
           <h4>Modernizr</h4>
@@ -55,7 +70,7 @@
       </div>
 
       <div class="footer">
-        <p>♥ from the Yeoman team</p>
+        <p>♥ from Steven Iseki and the Yeoman team</p>
       </div>
     </div>
 
@@ -69,7 +84,13 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-    <script data-main="scripts/main" src="../../bower_components/requirejs/require.js"></script>
+    <% if (moduleLoader === 'requirejs') { %>
+      <script data-main="scripts/main" src="../../bower_components/requirejs/require.js"></script> -->
+    <% } %>
+
+    <% if (moduleLoader === 'browserify') { %>
+      <script src="scripts/browserify/main.js"></script>
+    <% } %>
 
   </body>
 </html>

@@ -1,9 +1,9 @@
 {
-  "name": "generator-gulp-mitrhil",
-  "version": "0.0.0",
+  "name": "generator-gulp-mithril",
+  "version": "0.0.1",
   "description": "Scaffold out a front-end web app with Mithril and Gulp",
   "license": "BSD",
-  "repository": "StevenIseki/generator-gulp-mitrhil",
+  "repository": "StevenIseki/generator-gulp-mithril",
   "author": "Steven Iseki",
   "main": "app/index.js",
   "engines": {

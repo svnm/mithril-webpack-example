@@ -36,7 +36,7 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     if (!this.options['skip-welcome-message']) {
-      this.log(yosay('Welcome to the marvelous Mithril generator! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery, and a gulpfile.js to build your app.'));
+      this.log(yosay('Welcome to the Gulp Mitrhil generator! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery and and a gulpfile.js to build your app.'));
     }
   },
 
@@ -109,9 +109,13 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('editorconfig', '.editorconfig');
     },
 
-    h5bp: function () {
+    extras: function () {
       this.copy('favicon.ico', 'app/favicon.ico');
       this.copy('robots.txt', 'app/robots.txt');
+    },
+
+    images: function () {
+      this.directory('images', 'app/images');
     },
 
     mainStylesheet: function () {
@@ -135,7 +139,6 @@ module.exports = yeoman.generators.Base.extend({
       this.mkdir('app');
       this.mkdir('app/scripts');
       this.mkdir('app/styles');
-      this.mkdir('app/images');
       this.mkdir('app/fonts');
       this.copy('_main.js', 'app/scripts/main.js');
 
@@ -157,38 +160,6 @@ module.exports = yeoman.generators.Base.extend({
     });
 
     this.on('end', function () {
-
-      var bowerJson = this.dest.readJSON('bower.json');
-
-      // read Bower packages from bower.json and wire them to .html and .scss / .less
-
-      /*
-      wiredep({
-        bowerJson: bowerJson,
-        directory: 'bower_components',
-        exclude: ['bootstrap-sass', 'bootstrap.js'],
-        ignorePath: /^(\.\.\/)+/,
-        src: 'app/index.html'
-      });
-
-      if (this.cssFramework === 'SASS') {
-        wiredep({
-          bowerJson: bowerJson,
-          directory: 'bower_components',
-          ignorePath: /^(\.\.\/)+/,
-          src: 'app/styles/*.scss'
-        });
-      }
-
-      if (this.cssFramework === 'LESS') {
-        wiredep({
-          bowerJson: bowerJson,
-          directory: 'bower_components',
-          ignorePath: /^(\.\.\/)+/,
-          src: 'app/styles/*.less'
-        });
-      }
-      */
 
       this.invoke(this.options['test-framework'], {
         options: {

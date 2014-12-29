@@ -1,28 +1,24 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-gulp-webapp.svg?branch=master)](http://travis-ci.org/yeoman/generator-gulp-webapp)
-
-> [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process
+> [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process and Mitrhil as the MVC framework
 
 ![](screenshot.png)
-
 
 ## Features
 
 Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
 
-* CSS Autoprefixing
+* Mitrhil MVC framework
 * Built-in preview server with livereload
-* Automagically compile Sass
-* Automagically lint your scripts
+* Automagically compile with either Sass or Less
 * Awesome image optimization
-* Automagically wire-up dependencies installed with [Bower](http://bower.io) *(when `gulp watch` or `gulp wiredep`)*
+* Module loading using either Require or Browserify
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
 
 
 ## Getting Started
 
-- Install: `npm install -g generator-gulp-webapp`
-- Run: `yo gulp-webapp`
+- Install: `npm install -g generator-gulp-app`
+- Run: `yo gulp-app`
 - Run `gulp` for building to the `dist` directory and `gulp serve` for preview
 
 
@@ -31,12 +27,6 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 *(HTML/CSS/JS/Images/etc)*
 
 To install dependencies, run `bower install --save package-name` to get the files, then add a `script` or `style` tag to your `index.html` or another appropriate place.
-
-
-## Docs
-
-* [recipes](docs/recipes/README.md) for integrating other popular technologies like CoffeeScript
-* [details](docs/bower.md) about our Bower setup
 
 
 ## Options
@@ -48,11 +38,17 @@ To install dependencies, run `bower install --save package-name` to get the file
   Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
 
 
-## Contribute
-
-See the [contributing docs](contributing.md).
-
-
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
+
+![](app/templates/images/gulp.png)
+![](app/templates/images/browserify.png)
+![](app/templates/images/require.png)
+![](app/templates/images/html.png)
+![](app/templates/images/jquery.png)
+![](app/templates/images/less.png)
+![](app/templates/images/sass.png)
+![](app/templates/images/bootstrap.png)
+![](app/templates/images/modernizr.png)
+

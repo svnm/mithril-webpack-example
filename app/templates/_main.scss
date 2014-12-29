@@ -88,4 +88,15 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+
+  /* Space out Marketing text and icon */
+  .marketing .text, 
+  .marketing .icon {
+    margin-bottom: 30px;
+  }
+
+  /* Add height to marketing text */
+  .marketing .text {
+    min-height: 150px;
+  }
 }

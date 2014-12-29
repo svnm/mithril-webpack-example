@@ -1,5 +1,8 @@
 // shirt.js
+
+'use strict';
+
 define({
-    color: "black",
-    size : "large"
+    color: 'black',
+    size : 'large'
 });

@@ -8,7 +8,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link rel="stylesheet" href="styles/main.css">
-    <script src="bower_components/modernizr/modernizr.js"></script>
 
   </head>
   <body>
@@ -33,41 +32,102 @@
       </div>
 
       <div class="row marketing">
-        <div class="col-lg-12">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
 
+        <!-- html5 boilerplate -->
+        <div class="col-md-4 icon">
+          <img src="images/html.png" />
+        </div>
+        
+        <div class="col-md-8 text">
+            <h4>HTML5 Boilerplate</h4>
+            <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
+        </div>
+
+        <!-- jQuery -->
+        <div class="col-md-4 icon">
+          <img src="images/jquery.png" />
+        </div>
+        
+        <div class="col-md-8 text">
+          <h4>jQuery</h4>
+          <p>The Write Less, Do More, JavaScript Library.</p>
+        </div>
+      
+        <!-- Gulp -->
+        <div class="col-md-4 icon">
+          <img src="images/gulp.png" />
+        </div>
+      
+        <div class="col-md-8 text">
           <h4>Gulp</h4>
           <p>Speed. Efficiency. Simplicity. Gulp's use of streams and code-over-configuration makes for a simpler and more intuitive build.</p>
+        </div>
 
-
-          <% if (cssFramework === 'SASS') { %>
-            <h4>Sass</h4>
-            <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-          <% } %>
-
-          <% if (cssFramework === 'LESS') { %>
-            <h4>LESS</h4>
-            <p>Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.</p>
-          <% } %>
-
-
-          <% if (moduleLoader === 'requirejs') { %>
-            <h4>RequireJs</h4>
-            <p>RequireJS is a JavaScript file and module loader. Using a modular script loader like RequireJS will improve the speed and quality of your code.</p>
-          <% } %>
-
-          <% if (moduleLoader === 'browserify') { %>
-            <h4>Browserify</h4>
-            <p>Browserify lets you require('modules') in the browser by bundling up all of your dependencies.</p>
-          <% } %>
-
+        <!-- Bootstrap -->
+        <div class="col-md-4 icon">
+          <img src="images/bootstrap.png" />
+        </div>        
+      
+        <div class="col-md-8 text">
           <h4>Bootstrap</h4>
           <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
+        </div>
+
+        <!-- Modernizr -->
+        <div class="col-md-4 icon">
+          <img src="images/modernizr.png" />
+        </div>        
+      
+        <div class="col-md-8 text">
           <h4>Modernizr</h4>
           <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
         </div>
+
+        <% if (cssFramework === 'SASS') { %>
+        <!-- Sass -->
+        <div class="col-md-4 icon">
+          <img src="images/sass.png" />
+        </div>        
+      
+        <div class="col-md-8 text">
+          <h4>Sass</h4>
+          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
+        </div> <% } %>
+
+        <% if (cssFramework === 'LESS') { %>
+        <!-- Less -->
+        <div class="col-md-4 icon">
+          <img src="images/less.png" />
+        </div>
+        
+        <div class="col-md-8 text">
+          <h4>LESS</h4>
+          <p>Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable.</p>
+        </div> <% } %>
+
+        <% if (moduleLoader === 'requirejs') { %>
+        <!-- RequireJs -->        
+        <div class="col-md-4 icon">
+          <img src="images/require.png" />
+        </div>        
+        
+        <div class="col-md-8 text">
+          <h4>RequireJs</h4>
+          <p>RequireJS is a JavaScript file and module loader. Using a modular script loader like RequireJS will improve the speed and quality of your code.</p>
+        </div> <% } %>
+
+        <% if (moduleLoader === 'browserify') { %>
+        <!-- Browserify -->  
+        <div class="col-md-4 icon">
+          <img src="images/browserify.png" />
+        </div>        
+        
+        <div class="col-md-8 text">
+          <h4>Browserify</h4>
+          <p>Browserify lets you require('modules') in the browser by bundling up all of your dependencies.</p>
+        </div> <% } %>
       </div>
+
 
       <div class="footer">
         <p>♥ from Steven Iseki and the Yeoman team</p>
@@ -85,12 +145,16 @@
     </script>
 
     <% if (moduleLoader === 'requirejs') { %>
-      <script data-main="scripts/main" src="../../bower_components/requirejs/require.js"></script> -->
+      <script data-main="scripts/main" src="scripts/require.js"></script> -->
     <% } %>
 
     <% if (moduleLoader === 'browserify') { %>
       <script src="scripts/browserify/main.js"></script>
     <% } %>
+
+    <script src="scripts/modernizr.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/mithril.min.js"></script>
 
   </body>
 </html>

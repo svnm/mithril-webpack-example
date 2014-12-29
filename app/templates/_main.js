@@ -1,13 +1,12 @@
 // main.js
 
-/* jshint devel:true */
+'use strict';
+
 console.log('\'Allo \'Allo!');
-
-
 
 <% if (moduleLoader === 'requirejs') { %>
 define(function (require) {
-    var logger = require("./logger");
+    var logger = require('./logger');
     logger.logTheShirt();
 });
 <% } %>

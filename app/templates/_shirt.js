@@ -2,7 +2,7 @@
 
 'use strict';
 
-define({
+define({ 
     color: 'black',
     size : 'large'
 });

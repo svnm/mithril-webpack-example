@@ -1,6 +1,6 @@
 {
   "name": "generator-gulp-mithril",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Scaffold out a front-end web app with Mithril and Gulp",
   "license": "MIT",
   "repository": "StevenIseki/generator-gulp-mithril",

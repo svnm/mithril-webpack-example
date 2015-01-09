@@ -17,10 +17,9 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 
 ## Getting Started
 
-- Install: `npm install -g generator-gulp-app`
+- Install: `npm install -g generator-gulp-mithril`
 - Run: `yo gulp-app`
 - Run `gulp` for building to the `dist` directory and `gulp serve` for preview
-
 
 #### Third-Party Dependencies
 

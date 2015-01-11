@@ -3,6 +3,6 @@
 'use strict';
 
 define({ 
-    color: 'black',
+    color: 'blue',
     size : 'large'
 });

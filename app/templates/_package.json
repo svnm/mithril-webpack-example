@@ -13,9 +13,9 @@
     "watchify": "*",
     "vinyl-source-stream": "*",
     "underscore": "*", <% } if (moduleLoader === 'requirejs') { %>
-    "gulp-requirejs": "*", <% } if (cssFramework === 'LESS') { %>
-    "gulp-less": "*", <% } if (cssFramework === 'SASS') { %>
-    "gulp-ruby-sass": "*", <% } %>
+    "gulp-requirejs": "*", <% } %>
+    "gulp-less": "*",
+    "gulp-ruby-sass": "*",
     "gulp-plumber": "^0.6.3",
     "gulp-autoprefixer": "^1.0.1",
     "gulp-cache": "^0.2.2",
@@ -27,6 +27,7 @@
     "gulp-size": "^1.1.0", 
     "serve-static": "^1.4.0",
     "serve-index": "^1.1.4",
-    "lazypipe": "^0.2.1"
-  }
+    "lazypipe": "^0.2.1",
+    "opn": "*"
+ }
 }

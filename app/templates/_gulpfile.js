@@ -11,13 +11,13 @@ var gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   cache = require('gulp-cache'),
   jshint = require('gulp-jshint'),
-  imagemin = require('gulp-imagemin'),
   uglify = require('gulp-uglify'),
   minifyHtml = require('gulp-minify-html'),
   size = require('gulp-size'),
   serveStatic = require('serve-static'),
   serveIndex = require('serve-index');
 
+<% if (moduleLoader === 'browserify') { %>
 /* browserify */ 
 gulp.task('browserify', function() {
   var sourceFile = './app/scripts/main.js',
@@ -42,7 +42,7 @@ gulp.task('browserify', function() {
     bundler.on('update', bundle);
   }
   return bundle();
-});
+}); <% } %>
 
 /* styles */
 gulp.task('styles', function () { 
@@ -76,15 +76,6 @@ gulp.task('jshint', function () {
     .pipe(jshint.reporter('fail'));
 });
 
-/* images */
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
-    .pipe(cache(imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'));
-});
 
 /* extras */
 gulp.task('extras', function () {
@@ -142,8 +133,7 @@ gulp.task('watch', ['connect', 'bower'], function () {
   gulp.watch([
     'app/*.html',
     'app/styles/**/*.css',
-    'app/scripts/**/*.js',
-    'app/images/**/*'
+    'app/scripts/**/*.js'
   ]).on('change', livereload.changed);
 
   <% if (cssFramework === 'SASS') { %>
@@ -157,7 +147,7 @@ gulp.task('watch', ['connect', 'bower'], function () {
 });
 
 /* build */
-gulp.task('build', ['images', 'styles','extras', 'bower'], function () {
+gulp.task('build', ['styles','extras', 'bower'], function () {
   <% if (moduleLoader === 'browserify') { %>
     gulp.start('browserify'); <% } %>
 

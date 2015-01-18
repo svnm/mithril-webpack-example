@@ -8,12 +8,12 @@
     "connect": "^3.0.1",
     "connect-livereload": "*",
     "gulp-livereload": "^2.0.0",
-    "gulp": "^3.6.0", <% if (moduleLoader === 'browserify') { %>
+    "gulp": "^3.6.0",
     "browserify": "*",
     "watchify": "*",
     "vinyl-source-stream": "*",
-    "underscore": "*", <% } if (moduleLoader === 'requirejs') { %>
-    "gulp-requirejs": "*", <% } %>
+    "underscore": "*",
+    "gulp-requirejs": "*",
     "gulp-less": "*",
     "gulp-ruby-sass": "*",
     "gulp-plumber": "^0.6.3",
@@ -21,7 +21,6 @@
     "gulp-cache": "^0.2.2",
     "gulp-jshint": "^1.5.3",
     "jshint-stylish": "^1.0.0",
-    "gulp-imagemin": "^1.2.1",
     "gulp-uglify": "^1.0.1",
     "gulp-minify-html": "^0.1.6", 
     "gulp-size": "^1.1.0", 

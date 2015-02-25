@@ -9,7 +9,6 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * Mitrhil MVC framework
 * Built-in preview server with livereload
 * Automagically compile with either Sass or Less
-* Awesome image optimization
 * Module loading using either Require or Browserify
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*

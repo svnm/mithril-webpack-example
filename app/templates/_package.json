@@ -4,7 +4,6 @@
     "node": ">=0.10.0"
   },
   "devDependencies": {
-    "apache-server-configs": "^2.7.1",
     "connect": "^3.0.1",
     "connect-livereload": "*",
     "gulp-livereload": "^2.0.0",
@@ -13,7 +12,6 @@
     "watchify": "*",
     "vinyl-source-stream": "*",
     "underscore": "*",
-    "gulp-requirejs": "*",
     "gulp-less": "*",
     "gulp-ruby-sass": "*",
     "gulp-plumber": "^0.6.3",

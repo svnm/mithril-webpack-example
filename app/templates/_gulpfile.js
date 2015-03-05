@@ -17,7 +17,6 @@ var gulp = require('gulp'),
   serveStatic = require('serve-static'),
   serveIndex = require('serve-index');
 
-<% if (moduleLoader === 'browserify') { %>
 /* browserify */ 
 gulp.task('browserify', function() {
   var sourceFile = './app/scripts/main.js',
@@ -42,7 +41,8 @@ gulp.task('browserify', function() {
     bundler.on('update', bundle);
   }
   return bundle();
-}); <% } %>
+});
+
 
 /* styles */
 gulp.task('styles', function () { 
@@ -103,9 +103,7 @@ gulp.task('connect', ['styles'], function () {
 
 /* serve */
 gulp.task('serve', ['watch'], function () {
-  <% if (moduleLoader === 'browserify') { %>
-    gulp.start('browserify'); <% } %>
-
+    gulp.start('browserify');
   require('opn')('http://localhost:9000');
 });
 
@@ -142,14 +140,13 @@ gulp.task('watch', ['connect', 'bower'], function () {
   <% if (cssFramework === 'LESS') { %>
     gulp.watch('app/styles/**/*.less', ['styles']); <% } %>
 
-  <% if (moduleLoader === 'browserify') { %>
-    gulp.watch('app/scripts/**/*.js', ['browserify']); <% } %>
+    gulp.watch('app/scripts/**/*.js', ['browserify']);
 });
 
 /* build */
 gulp.task('build', ['styles','extras', 'bower'], function () {
-  <% if (moduleLoader === 'browserify') { %>
-    gulp.start('browserify'); <% } %>
+
+  gulp.start('browserify');
 
   /* app */
   gulp.src('app/**/*')
@@ -164,6 +161,6 @@ gulp.task('build', ['styles','extras', 'bower'], function () {
 });
 
 /* default */
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
+gulp.task('default', function () {
+  gulp.start('serve');
 });

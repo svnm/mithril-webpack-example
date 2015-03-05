@@ -62,27 +62,6 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
   
-  moduleLoader: function() {
-    var cb = this.async();
-
-    var prompts = [{
-      type: 'list',
-      name: 'moduleLoader',
-      message: 'Which module loader would you like to include?',
-      choices: [{
-        name: 'Requirejs',
-        value: 'requirejs'
-      }, {
-        name: 'Browserify',
-        value: 'browserify'
-      }]
-    }];
-
-    this.prompt(prompts, function(props) {
-      this.moduleLoader = props.moduleLoader;
-      cb();
-    }.bind(this));
-  },
 
   writing: {
     gulpfile: function() {
@@ -118,6 +97,18 @@ module.exports = yeoman.generators.Base.extend({
       this.directory('images', 'app/images');
     },
 
+    models: function () {
+      this.directory('models', 'app/models');
+    },
+
+    controllers: function () {
+      this.directory('controllers', 'app/controllers');
+    },
+
+    views: function () {
+      this.directory('views', 'app/views');
+    },
+
     mainStylesheet: function () {
       var css = 'main';
 
@@ -141,10 +132,6 @@ module.exports = yeoman.generators.Base.extend({
       this.mkdir('app/styles');
       this.mkdir('app/fonts');
       this.copy('_main.js', 'app/scripts/main.js');
-
-      /* if requirejs */
-      this.copy('_shirt.js', 'app/scripts/shirt.js');
-      this.copy('_logger.js', 'app/scripts/logger.js');
     }
   },
 

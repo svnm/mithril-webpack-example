@@ -93,20 +93,28 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('robots.txt', 'app/robots.txt');
     },
 
+    app: function () {
+      this.mkdir('app');
+      this.mkdir('app/scripts');
+      this.mkdir('app/styles');
+      this.mkdir('app/fonts');
+      this.copy('_main.js', 'app/scripts/main.js');
+    },
+
     images: function () {
       this.directory('images', 'app/images');
     },
 
     models: function () {
-      this.directory('models', 'app/models');
+      this.directory('models', 'app/scripts/models');
     },
 
-    controllers: function () {
-      this.directory('controllers', 'app/controllers');
+    viewModels: function () {
+      this.directory('viewModels', 'app/scripts/viewModels');
     },
 
     views: function () {
-      this.directory('views', 'app/views');
+      this.directory('views', 'app/scripts/views');
     },
 
     mainStylesheet: function () {
@@ -124,15 +132,8 @@ module.exports = yeoman.generators.Base.extend({
 
     writeIndex: function () {
       this.copy('_index.html', 'app/index.html');
-    },
-
-    app: function () {
-      this.mkdir('app');
-      this.mkdir('app/scripts');
-      this.mkdir('app/styles');
-      this.mkdir('app/fonts');
-      this.copy('_main.js', 'app/scripts/main.js');
     }
+
   },
 
   install: function () {

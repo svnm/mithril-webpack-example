@@ -31,7 +31,9 @@ gulp.task('browserify', function() {
   var bundle = function() {
     return bundler
       .bundle()
-      .on('error', function () {})
+      .on('error', function (err) {
+        console.log(err);
+      })
       .pipe(source(destFile))
       .pipe(gulp.dest(destFolder));
   };

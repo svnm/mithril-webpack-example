@@ -18,7 +18,7 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 
 - Install: `npm install -g generator-gulp-mithril`
 - Run: `yo gulp-mithril`
-- Run `gulp` for building to the `dist` directory and `gulp serve` for preview
+- Run `gulp build` for building to the `dist` directory and `gulp` for previewing with live reload
 
 #### Third-Party Dependencies
 
@@ -47,8 +47,6 @@ To install dependencies, run `bower install --save package-name` to get the file
 ![](app/templates/images/jquery.png)
 ![](app/templates/images/less.png)
 ![](app/templates/images/sass.png)
-![](app/templates/images/bootstrap.png)
-![](app/templates/images/modernizr.png)
 
 
 ## Contributing

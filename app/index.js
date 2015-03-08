@@ -36,7 +36,7 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     if (!this.options['skip-welcome-message']) {
-      this.log(yosay('Welcome to the Gulp Mitrhil generator! Out of the box I include Mitrhil, Bootstrap, HTML5 Boilerplate, Modernizr, jQuery and and a gulpfile.js to build your app.'));
+      this.log(yosay('Welcome to the Gulp Mitrhil generator! Out of the box I include Mitrhil, jQuery, CSS Skeleton and a gulpfile.js to build your app.'));
     }
   },
 
@@ -117,7 +117,7 @@ module.exports = yeoman.generators.Base.extend({
       this.directory('views', 'app/scripts/views');
     },
 
-    mainStylesheet: function () {
+    styles: function () {
       var css = 'main';
 
       if (this.cssFramework === 'SASS') {
@@ -128,6 +128,8 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       this.copy('_' + css, 'app/styles/' + css);
+      this.copy('_skeleton.css', 'app/styles/skeleton.css');
+      this.copy('_normalize.css', 'app/styles/normalize.css');      
     },
 
     writeIndex: function () {

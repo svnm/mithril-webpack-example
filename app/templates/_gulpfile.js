@@ -113,8 +113,6 @@ gulp.task('serve', ['watch'], function () {
 gulp.task('bower', function () {
   var paths = {
     js: [
-      'bower_components/modernizr/modernizr.js',
-      'bower_components/requirejs/require.js',
       'bower_components/jquery/dist/jquery.js',
       'bower_components/mithril/mithril.min.js'
     ]
@@ -122,7 +120,6 @@ gulp.task('bower', function () {
 
   gulp.src(paths.js)
     .pipe(gulp.dest('app/scripts'));
-
 });
 
 /* watch */

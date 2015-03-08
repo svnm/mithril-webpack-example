@@ -42,9 +42,8 @@ To install dependencies, run `bower install --save package-name` to get the file
 
 ![](app/templates/images/gulp.png)
 ![](app/templates/images/browserify.png)
-![](app/templates/images/require.png)
-![](app/templates/images/html.png)
 ![](app/templates/images/jquery.png)
+![](app/templates/images/skeleton.png)
 ![](app/templates/images/less.png)
 ![](app/templates/images/sass.png)
 

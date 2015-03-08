@@ -49,14 +49,9 @@ gulp.task('browserify', function() {
 /* styles */
 gulp.task('styles', function () { 
   <%  if (cssFramework === 'SASS') { %>
-  return gulp.src('app/styles/main.scss')
-    .pipe(plumber())
-    .pipe(rubySass({
-      style: 'expanded',
-      precision: 10
-    }))
-    .pipe(autoprefixer({browsers: ['last 1 version']}))
-    .pipe(gulp.dest('app/styles/')); <% } %>
+  return rubySass('app/styles/main.scss', { style: 'expanded' })
+    .pipe(gulp.dest('app/styles/'));
+<% } %>
 
   <%  if (cssFramework === 'LESS') { %>
   return gulp.src('app/styles/main.less')

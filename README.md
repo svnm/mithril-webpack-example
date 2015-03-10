@@ -1,3 +1,5 @@
+## Generator Gulp Mithril
+
 > [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process and Mitrhil as the MVC framework
 
 ![](screenshot.png)
@@ -20,25 +22,6 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 - Run: `yo gulp-mithril`
 - Run `gulp build` for building to the `dist` directory and `gulp` for previewing with live reload
 
-#### Third-Party Dependencies
-
-*(HTML/CSS/JS/Images/etc)*
-
-To install dependencies, run `bower install --save package-name` to get the files, then add a `script` or `style` tag to your `index.html` or another appropriate place.
-
-
-## Options
-
-- `--skip-install`
-  Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
-
-- `--test-framework=<framework>`
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
-
-
-## License
-
-[BSD license](http://opensource.org/licenses/bsd-license.php)
 
 ![](app/templates/images/gulp.png)
 ![](app/templates/images/browserify.png)
@@ -55,3 +38,29 @@ To install dependencies, run `bower install --save package-name` to get the file
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2015 isekivacenz &lt;stevenisekimartin@gmail.com&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

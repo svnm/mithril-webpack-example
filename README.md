@@ -6,7 +6,7 @@
 
 ## Features
 
-Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
+Please see our [gulpfile.js](app/templates/_gulpfile.js) for up to date information on what we support.
 
 * Mitrhil MVC framework
 * Built-in preview server with livereload
@@ -44,7 +44,7 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 
 (The MIT License)
 
-Copyright (c) 2015 isekivacenz &lt;stevenisekimartin@gmail.com&gt;
+Copyright © 2015 isekivacenz &lt;stevenisekimartin@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

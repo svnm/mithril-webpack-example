@@ -1,35 +1,27 @@
-## Generator Gulp Mithril
+## mithril-webpack-example
 
-> [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process and Mitrhil as the MVC framework
+just an example using mithril, webpack and css modules...
 
-![](screenshot.png)
+## Dependencies
 
-## Features
+* **mithril** `0.1.34`
+* **babel** `6.1.0`
+* **webpack** `1.12.6`
+* **webpack-dev-middleware** `2.0.0`
+* **express** `4.13.3`
+* **css modules**
 
-Please see our [gulpfile.js](app/templates/_gulpfile.js) for up to date information on what we support.
+## Run
 
-* Mitrhil MVC framework
-* Built-in preview server with livereload
-* Automagically compile with either Sass or Less
-* Module loading using either Require or Browserify
+```
+npm install
+npm start
+open http://127.0.0.1:3000
+```
 
-*For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
-
-
-## Getting Started
-
-- Install: `npm install -g generator-gulp-mithril`
-- Run: `yo gulp-mithril`
-- Run `gulp build` for building to the `dist` directory and `gulp` for previewing with live reload
-
-
-![](app/templates/images/gulp.png)
-![](app/templates/images/browserify.png)
-![](app/templates/images/jquery.png)
-![](app/templates/images/skeleton.png)
-![](app/templates/images/less.png)
-![](app/templates/images/sass.png)
-
+![](images/mithril.png)
+![](images/cssmodules.png)
+![](images/webpack.png)
 
 ## License
 

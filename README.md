@@ -1,6 +1,6 @@
 ## mithril-webpack-example
 
-just an example using mithril, webpack and css modules...
+just an example using mithril, webpack, express and css modules...
 
 ## Dependencies
 
